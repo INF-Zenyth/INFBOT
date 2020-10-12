@@ -1,4 +1,3 @@
-
 const Discord = require("discord.js");
 const client = new Discord.Client({partials: ["MESSAGE", "CHANNEL", "REACTION"]});
 
@@ -300,7 +299,7 @@ client.on("messageReactionRemove", async (reaction, user) => {         // Only t
 });
 
 
-client.login(token);
+client.login(process.env.TOKEN);
 
 /*
 Infernal Discord Server Reaction Roles
