@@ -1,0 +1,18 @@
+{
+    "prefix": "inf/",
+    "token": "NzMyMzE2Njg0NDk2NDA0NTIx.Xwy1Dw.lpj4s6FD8cVgcZ9rZruhiy2dems",
+    "autoChannelName": "➕ New Channel",
+    "autoChannelIndicator": "➕",
+    "autoChannelCategory": "Voice Channels",
+    "version": "V1.7.2",
+    "creators": "Zenyth#4037",
+    "botavatar": "https://i.imgur.com/OjNo39d.png",
+    "deleteDelay": "200",
+    
+    "reactionRolesChannel": "649915868939288586",
+
+    "1.6 notes": "added suggestion support, and upgraded automatic voice channel code",
+    "1.7 notes": "vastly upgraded the automatic voice channels: when a user quits his/her channel, it is given to another user connected to the channel / deleted if there is nobody",
+    "1.7.1 notes:": "added statuses to channel names",
+    "1.7.2 notes" : "temporarily removed music playing functionality to be able to host the bot. added renaming channels when something happens in channel (mute...)"
+}
