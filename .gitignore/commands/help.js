@@ -17,6 +17,7 @@ module.exports = {
                 { name: `${prefix}user`, value: "```ini\n[Gives you information about you such as your ID, when you joined Discord and this server.]\n```", inline: true},
                 { name: `${prefix}server`, value: "```ini\n[Gives you information about the server you are on such as when it was created and more.]\n```", inline: true},
                 { name: `${prefix}avatar`, value: "```ini\n[No argument: gives you your avatar.\n\nWith an argument: gives you the avatar of tagged user.]```", inline: true},
+                { name: `${prefix}bot`, value: "```ini\n[Gives you information about the bot]```", inline: true},
 
                 //{ name: `${prefix}play`, value: "```ini\n[Plays the linked youtube video or adds it to the queue.]\n```", inline: true},                        //
                 //{ name: `${prefix}skip`, value: "```ini\n[Skips the video that is currently playing, gonig to the next in the queue.]```", inline: true},       //      Temporarily removed
