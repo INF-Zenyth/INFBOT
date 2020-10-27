@@ -16,7 +16,7 @@ client.on("ready", () => {
     const status = [
         `${client.guilds.cache.size} servers | ${prefix}help`,
         `${client.channels.cache.size} channels | ${prefix}help`,
-        /*`${client.users.cache.size}*/` 11k users | ${prefix}help`,
+        `${client.users.cache.size} users | ${prefix}help`,
     ];
     var x = 0;
 
@@ -108,7 +108,7 @@ function botcommand(message) {
             { name: "Node JS", value: "12.18.3", inline: true},
             { name: "Library", value: "discord.js 12", inline: true},
             { name: "Servers", value: `${client.guilds.cache.size} servers`, inline: true},
-            { name: "Users", value: /*`${client.users.cache.size}*/`11k users`, inline: true},
+            { name: "Users", value: `${client.users.cache.size} users`, inline: true},
             { name: "Developer's Discord", value: "https://discord.gg/XjZSh7F", inline: true})
         message.channel.send(Embed);
 
@@ -130,42 +130,35 @@ client.on('voiceStateUpdate', async (oldState, newState) => {
 
     setTimeout(function(){
 
-        if(!newVCID && oldVCID) {
+        if(!newVCID && oldVCID) {           // quit
 
             let oldSize = oldState.channel.members.size;
-            if(oldSize > 0 && oldState.guild.channels.cache.find(channel => channel.name.includes(`${oldState.member.user.username}` && "[" && "]"))) {
+            if(oldSize == 0 && oldState.guild.channels.cache.find(channel => channel.name.includes(`${oldState.member.user.username}`))) {
+
+                let fetchedC = oldState.guild.channels.cache.find(channel => channel.name.includes(`${oldState.member.user.username}`));
+                fetchedC.delete();
+                console.log(`INFBOT: A channel was deleted. Guild ID: ${oldState.guild.id}`)
+
+            }
+            else if(oldSize >= 1 && oldState.guild.channels.cache.find(channel => channel.name.includes(`${oldState.member.user.username}`))) {
 
                 let fetchedUser = oldState.channel.members.first().user.username;
                 let oldUserPresence = oldState.channel.members.first().user.presence.activities[0];             // To change ?
-                let fetchedC = oldState.guild.channels.cache.find(channel => channel.name.includes(`${oldState.member.user.username}` && "[" && "]"));
+                let fetchedC = oldState.guild.channels.cache.find(channel => channel.name.includes(`${oldState.member.user.username}`));
                 fetchedC.setName(`${fetchedUser} [${oldUserPresence ? oldUserPresence.name : "General"}]`)      // To change ?
                 console.log(`INFBOT: A channel was given to another user. Guild ID: ${oldState.guild.id}`)
-
-            }
-            else if(oldState.guild.channels.cache.find(channel => channel.name.includes(`${oldState.member.user.username}` && "[" && "]"))) {
-
-                let fetchedC = oldState.guild.channels.cache.find(channel => channel.name.includes(`${oldState.member.user.username}` && "[" && "]"));
-                fetchedC.delete();                
-                console.log(`INFBOT: A channel was deleted. Guild ID: ${oldState.guild.id}`)
 
             }
         }
         else if(newVCID) {
             if(newVCID === autoChannelID) {
-                
-                newState.guild.channels.create(`${joinedUsername} [${newUserPresence ? newUserPresence.name : "General"}]`, {type: "voice", parent: parentChannel, position: 5})    // To change ?
-                console.log(`INFBOT: A channel was created. Guild ID: ${newState.guild.id}`);
-
-            }
-            else {
-
-                let fetchedUser = newState.member.user.username;
-                
-                if(newState.guild.channels.cache.find(channel => channel.name.includes(`${fetchedUser} [`))) {
-
-                    let fetchedC = newState.guild.channels.cache.find(channel => channel.name.includes(`${fetchedUser}` && "[" && "]"));
-                    fetchedC.setName(`${fetchedUser} [${newUserPresence ? newUserPresence.name : "General"}]`);
-                    
+                if(newState.guild.channels.cache.find(channel => channel.name.includes(`${joinedUsername}`))) {
+                    oldChannel = newState.guild.channels.cache.find(channel => channel.name.includes(`${joinedUsername}`));
+                    joinedUser.voice.setChannel(oldChannel);
+                }
+                else{
+                    newState.guild.channels.create(`${joinedUsername} [${newUserPresence ? newUserPresence.name : "General"}]`, {type: "voice", parent: parentChannel, position: 5})    // To change ?
+                    console.log(`INFBOT: A channel was created. Guild ID: ${newState.guild.id}`);
                 }
             }
         }
@@ -295,7 +288,6 @@ client.on("messageReactionRemove", async (reaction, user) => {         // Only t
     }
 
 });
-
 
 client.login(process.env.TOKEN);
 
