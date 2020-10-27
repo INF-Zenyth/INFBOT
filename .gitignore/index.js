@@ -16,7 +16,7 @@ client.on("ready", () => {
     const status = [
         `${client.guilds.cache.size} servers | ${prefix}help`,
         `${client.channels.cache.size} channels | ${prefix}help`,
-        `/*${client.users.cache.size}*/ 11k users | ${prefix}help`,
+        /*`${client.users.cache.size}*/` 11k users | ${prefix}help`,
     ];
     var x = 0;
 
