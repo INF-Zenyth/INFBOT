@@ -13,5 +13,6 @@
     "1.6 notes": "added suggestion support, and upgraded automatic voice channel code",
     "1.7 notes": "vastly upgraded the automatic voice channels: when a user quits his/her channel, it is given to another user connected to the channel / deleted if there is nobody",
     "1.7.1 notes:": "added statuses to channel names",
-    "1.7.2 notes" : "temporarily removed music playing functionality to be able to host the bot. added renaming channels when something happens in channel (mute...)"
+    "1.7.2 notes" : "temporarily removed music playing functionality to be able to host the bot. added renaming channels when something happens in channel (mute...)",
+    "1.8.0 notes:": "added anti-griefing (temporarily can't create channel if you already have one under your name"
 }
