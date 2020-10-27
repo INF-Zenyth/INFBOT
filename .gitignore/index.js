@@ -108,7 +108,7 @@ function botcommand(message) {
             { name: "Node JS", value: "12.18.3", inline: true},
             { name: "Library", value: "discord.js 12", inline: true},
             { name: "Servers", value: `${client.guilds.cache.size} servers`, inline: true},
-            { name: "Users", value: `${client.users.cache.size} users`, inline: true},
+            { name: "Users", value: /*`${client.users.cache.size}*/`11k users`, inline: true},
             { name: "Developer's Discord", value: "https://discord.gg/XjZSh7F", inline: true})
         message.channel.send(Embed);
 
