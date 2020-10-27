@@ -16,7 +16,7 @@ client.on("ready", () => {
     const status = [
         `${client.guilds.cache.size} servers | ${prefix}help`,
         `${client.channels.cache.size} channels | ${prefix}help`,
-        `${client.users.cache.size} users | ${prefix}help`,
+        `/*${client.users.cache.size}*/ 11k users | ${prefix}help`,
     ];
     var x = 0;
 
@@ -29,7 +29,7 @@ client.on("ready", () => {
         }
     }, 10000);
     
-    console.log(`INFBOT ${version} Online • ${client.users.cache.size - 1} users • ${client.channels.cache.size} channels • ${client.guilds.cache.size} servers`);
+    console.log(`INFBOT ${version} Online • ${client.users.cache.size - 1} users (Need to fix problem with incorrect number showing) • ${client.channels.cache.size} channels • ${client.guilds.cache.size} servers`);
 });
 
 client.on("guildCreate", guild => {
