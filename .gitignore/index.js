@@ -167,8 +167,6 @@ client.on('voiceStateUpdate', async (oldState, newState) => {
                     fetchedC.setName(`${fetchedUser} [${newUserPresence ? newUserPresence.name : "General"}]`);
                     
                 }
-                console.log(`INFBOT: The user switched to his newly created channel or did not join the AutoChannel or muted/deafened/... him/herself. Guild ID: ${newState.guild.id}`);    // Can remove
-
             }
         }
         else if(oldVCID && newVCID) {
