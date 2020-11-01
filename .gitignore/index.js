@@ -16,7 +16,7 @@ client.on("ready", () => {
     const status = [
         `${client.guilds.cache.size} servers | ${prefix}help`,
         `${client.channels.cache.size} channels | ${prefix}help`,
-        `${client.users.cache.size} users | ${prefix}help`,
+        `${client.guilds.cache.reduce((a, g) => a + g.memberCount, 0)} users | ${prefix}help`,
     ];
     var x = 0;
 
@@ -29,7 +29,7 @@ client.on("ready", () => {
         }
     }, 10000);
     
-    console.log(`INFBOT ${version} Online • ${client.users.cache.size} users • ${client.channels.cache.size} channels • ${client.guilds.cache.size} servers`);
+    console.log(`INFBOT ${version} Online • ${client.guilds.cache.reduce((a, g) => a + g.memberCount, 0)} users • ${client.channels.cache.size} channels • ${client.guilds.cache.size} servers`);
 });
 
 client.on("guildCreate", guild => {
@@ -108,7 +108,7 @@ function botcommand(message) {
             { name: "Node JS", value: "12.18.3", inline: true},
             { name: "Library", value: "discord.js 12", inline: true},
             { name: "Servers", value: `${client.guilds.cache.size} servers`, inline: true},
-            { name: "Users", value: `${client.users.cache.size} users`, inline: true},
+            { name: "Users", value: `${client.guilds.cache.reduce((a, g) => a + g.memberCount, 0)} users`, inline: true},
             { name: "Developer's Discord", value: "https://discord.gg/XjZSh7F", inline: true})
         message.channel.send(Embed);
 
