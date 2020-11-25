@@ -1,15 +1,15 @@
 {
     "prefix": "inf/",
+    "token": "THERE AIN'T NO TOKEN HERE",
     "autoChannelName": "➕ New Channel",
     "autoChannelIndicator": "➕",
     "autoChannelCategory": "Voice Channels",
-    "version": "V1.8.2",
-    "creators": "Zenyth#4037",
+    "version": "V1.8.3",
+    "creators": "Zenyth#4037 and Atineon#2652",
     "botavatar": "https://i.imgur.com/OjNo39d.png",
     "deleteDelay": "200",
-    
+    "consoleExecutedCommands": "Yes",
     "reactionRolesChannel": "649915868939288586",
-
-    "patchdate" : "08/11/2020 - 12:00",
-    "patchnotes" : "Removed User Presence in channel names to improve stability, they will be added back in the future.\nImproved code to not include error messages when users mute themselves when INFBOT Voice Channels aren't active."
+    "patchdate" : "25/11/2020 - 22:00",
+    "patchnotes" : "Updated the inf/help.\nINFBOT now sends the commands in your DMs."
 }
