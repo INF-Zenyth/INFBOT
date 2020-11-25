@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const {version, creators, botavatar, deleteDelay, autoChannelName, autoChannelCategory} = require("../config.json");
+const {version, creators, botavatar, deleteDelay, autoChannelName, autoChannelCategory, consoleExecutedCommands} = require("../config.json");
 
 module.exports = {
 
@@ -30,6 +30,8 @@ module.exports = {
                     })
                     .catch(console.error);
 
+                    if(consoleExecutedCommands == "Yes") {console.log("INFBOT: A user executed the unsetup command successfully.")}
+
             }
 
             else {
@@ -45,6 +47,8 @@ module.exports = {
                     })
                     .catch(console.error);
 
+                    if(consoleExecutedCommands == "Yes") {console.log("INFBOT: A user executed the unsetup command but INFBOT VCs aren't on their server.")}
+
             }
 
         }
@@ -52,17 +56,19 @@ module.exports = {
         else {
 
             let Embed = new Discord.MessageEmbed()
-            .setColor('#990000')
-            .setTitle('You seem to have insufficient permissions...')
-            .setTimestamp()
-            .addFields(
-                {name: "You need Administrator privileges to get rid of INFBOT Voice Channels.", value: "If you think this is an error, please leave a message on the Infernal Discord server: https://discord.gg/jwEp6VX"})
-            .setFooter(`INFBOT by ${creators} • ${version}`, `${botavatar}`);
-        message.channel.send(Embed)
-            .then(msg => {
-                msg.delete({timeout: 20000})
-            })
-            .catch(console.error);
+                .setColor('#990000')
+                .setTitle('You seem to have insufficient permissions...')
+                .setTimestamp()
+                .addFields(
+                    {name: "You need Administrator privileges to get rid of INFBOT Voice Channels.", value: "If you think this is an error, please leave a message on the Infernal Discord server: https://discord.gg/jwEp6VX"})
+                .setFooter(`INFBOT by ${creators} • ${version}`, `${botavatar}`);
+            message.channel.send(Embed)
+                .then(msg => {
+                    msg.delete({timeout: 20000})
+                })
+                .catch(console.error);
+
+                if(consoleExecutedCommands == "Yes") {console.log("INFBOT: A user executed the unsetup command but they didn't have the required permissions.")}
 
         }
 

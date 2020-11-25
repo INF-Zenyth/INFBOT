@@ -1,6 +1,5 @@
 const Discord = require("discord.js");
-const {prefix, version, creators, botavatar, deleteDelay} = require("../config.json");
-const { truncateSync } = require("fs");
+const {prefix, version, creators, botavatar, deleteDelay, consoleExecutedCommands} = require("../config.json");
 
 module.exports = {
     name: "ban",
@@ -24,6 +23,7 @@ module.exports = {
                     })
                     .catch(console.error);
 
+                if(consoleExecutedCommands == "Yes") {console.log("INFBOT: A user executed the ban command and forgot to tag a user.")}
             }
             else if(user == message.author) {
                 let Embed = new Discord.MessageEmbed()
@@ -38,6 +38,8 @@ module.exports = {
                         msg.delete({timeout: 20000})
                     })
                     .catch(console.error);
+
+                if(consoleExecutedCommands == "Yes") {console.log("INFBOT: A user executed the ban command and tried to ban themselves.")}
             }
             else {
                 let userN = message.mentions.users.first().username;
@@ -54,6 +56,8 @@ module.exports = {
                 message.channel.send(Embed)
 
                 user.ban({reason: reason})
+
+                if(consoleExecutedCommands == "Yes") {console.log("INFBOT: A user executed the ban command successfully.")}
             } 
         }
         else {
@@ -69,6 +73,8 @@ module.exports = {
                     msg.delete({timeout: 20000})
                 })
                 .catch(console.error);
+
+            if(consoleExecutedCommands == "Yes") {console.log("INFBOT: A user executed the ban command but didn't have the required permissions.")}
         }
         let options = {timeout: deleteDelay}
         message.delete(options);

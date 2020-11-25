@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const {version, creators, botavatar, deleteDelay} = require("../config.json");
+const {version, creators, botavatar, deleteDelay, consoleExecutedCommands} = require("../config.json");
 
 module.exports = {
     name: 'permcheck',
@@ -18,8 +18,7 @@ module.exports = {
                 .then(msg => {
                     msg.delete({timeout: 20000})
                 })
-                .catch(console.error);
-            
+                .catch(console.error);            
         }
         else {
 
@@ -33,11 +32,10 @@ module.exports = {
                     msg.delete({timeout: 20000})
                 })
                 .catch(console.error);
-
         }
-            
         let options = {timeout: deleteDelay}
         message.delete(options);
 
+        if(consoleExecutedCommands == "Yes") {console.log("INFBOT: A user executed the permcheck command.")}
     },
 };

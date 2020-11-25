@@ -9,7 +9,7 @@ for(const file of commandFiles) {
     client.commands.set(command.name, command);
 }
 
-const {prefix, version, autoChannelName, autoChannelIndicator, autoChannelCategory, token, creators, botavatar, deleteDelay, reactionRolesChannel, patchdate, patchnotes} = require('./config.json');
+const {prefix, version, autoChannelName, autoChannelCategory, token, creators, botavatar, deleteDelay, reactionRolesChannel, patchdate, patchnotes, consoleExecutedCommands} = require('./config.json');
 
 client.on("ready", () => {
 
@@ -112,10 +112,12 @@ function botcommand(message) {
             { name: "Channels", value: `${client.channels.cache.size} channels`, inline: true},
             { name: "Developer's Discord", value: "https://discord.gg/XjZSh7F"},
             { name: `Last Update [${patchdate}]`, value: `${patchnotes}`})
-        message.channel.send(Embed);
 
-        let options = {timeout: deleteDelay}
-        message.delete(options);
+    message.channel.send(Embed);
+    let options = {timeout: deleteDelay}
+    message.delete(options);
+
+    if(consoleExecutedCommands == "Yes") {console.log("INFBOT: A user executed the bot command.")}
 };
 
 client.on('voiceStateUpdate', async (oldState, newState) => {
@@ -124,7 +126,7 @@ client.on('voiceStateUpdate', async (oldState, newState) => {
     let parentChannel = newState.guild.channels.cache.find(channel => channel.name === autoChannelCategory && channel.type == "category");
     let oldVCID = oldState.channelID;
     let joinedUsername = newState.member.user.username;
-    let newUserPresence = newState.member.user.presence.activities[0];
+    //let newUserPresence = newState.member.user.presence.activities[0];
 
     try {
 
@@ -147,7 +149,7 @@ client.on('voiceStateUpdate', async (oldState, newState) => {
                 else if(oldSize >= 1 && oldState.guild.channels.cache.find(channel => channel.name.includes(`${oldState.member.user.username}`))) {
 
                     let fetchedUser = oldState.channel.members.first().user.username;
-                    let oldUserPresence = oldState.channel.members.first().user.presence.activities[0];
+                    //let oldUserPresence = oldState.channel.members.first().user.presence.activities[0];
                     let fetchedC = oldState.guild.channels.cache.find(channel => channel.name.includes(`${oldState.member.user.username}`));
                     fetchedC.setName(`${fetchedUser} [General]`);      // [${oldUserPresence ? oldUserPresence.name : "General"}]
                     console.log(`INFBOT: A channel was given to another user. Guild ID: ${oldState.guild.id}`);
@@ -299,7 +301,6 @@ client.login(process.env.TOKEN);
 
 /*
 Infernal Discord Server Reaction Roles
-
 :warframe: 650436228059234313           //  649915251470630912
 :rle: 687941410019737745                //  687926881752055808
 :rl: 655107911374209066                 //  649917383900790805

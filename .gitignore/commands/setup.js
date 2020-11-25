@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const {version, creators, botavatar, deleteDelay, autoChannelName, autoChannelCategory} = require("../config.json");
+const {version, creators, botavatar, deleteDelay, autoChannelName, autoChannelCategory, consoleExecutedCommands} = require("../config.json");
 
 module.exports = {
 
@@ -43,6 +43,8 @@ module.exports = {
                     .setFooter(`INFBOT by ${creators} • ${version}`, `${botavatar}`);
                 message.channel.send(Embed)
 
+                if(consoleExecutedCommands == "Yes") {console.log("INFBOT: A user executed the setup command and has now setup INFBOT VCs.")}
+
             }
 
             else {
@@ -58,6 +60,8 @@ module.exports = {
                     })
                     .catch(console.error);
 
+                    if(consoleExecutedCommands == "Yes") {console.log("INFBOT: A user executed the setup command but INFBOT VCs are already setup on their server.")}
+
             }
 
         }
@@ -72,6 +76,8 @@ module.exports = {
                     {name: "You need Administrator privileges to setup INFBOT Voice Channels.", value: "If you think this is an error, please leave a message on the Infernal Discord server: https://discord.gg/jwEp6VX"})
                 .setFooter(`INFBOT by ${creators} • ${version}`, `${botavatar}`);
             message.channel.send(Embed)
+
+            if(consoleExecutedCommands == "Yes") {console.log("INFBOT: A user executed the setup command but didn't have the required permissions.")}
 
         }
 
