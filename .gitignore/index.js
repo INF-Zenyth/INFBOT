@@ -30,6 +30,7 @@ client.on("ready", () => {
     }, 10000);
     
     console.log(`INFBOT ${version} Online • ${client.guilds.cache.reduce((a, g) => a + g.memberCount, 0)} users • ${client.channels.cache.size} channels • ${client.guilds.cache.size} servers`);
+    console.log(client.guilds.cache.map(stats => `INFBOT: Guild: ${stats.name} | Member Count: ${stats.memberCount})
 });
 
 client.on("guildCreate", guild => {
