@@ -56,11 +56,12 @@ module.exports = {
 
         let Embed4 = new Discord.MessageEmbed()
             .setColor("#0099ff")
-            .setTitle("INFBOT | Voting")
-            .setDescription("Don't forget to upvote the bot if you like it!")
+            .setTitle("INFBOT | Add/Vote")
+            .setDescription("Don't forget to add this bot to your server or upvote it if you like it!")
             .setThumbnail(botavatar)
             .addFields(
-                { name: "Head over to our top.gg page:", value: "https://top.gg/bot/732316684496404521"})
+                { name: "Invite INFBOT to your server:", value: "[Discord Invite](https://discord.com/api/oauth2/authorize?client_id=732316684496404521&permissions=17047574&scope=bot)"},
+                { name: "Head over to our top.gg page:", value: "[Top.gg](https://top.gg/bot/732316684496404521)"})
             .setTimestamp()
             .setFooter(`INFBOT by ${creators} • ${version}`, `${botavatar}`)
 
