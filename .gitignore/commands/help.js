@@ -48,7 +48,7 @@ module.exports = {
             .setDescription("Do you need any additionnal help? Do you have any questions?")
             .setThumbnail(botavatar)
             .addFields(
-                { name: `Head over to our Discord Server:`, value: `https://discord.gg/jwEp6VX`})
+                { name: `Head over to our Discord Server:`, value: `[Infernal Discord Server](https://discord.gg/jwEp6VX)`})
             .setTimestamp()
             .setFooter(`INFBOT by ${creators} • ${version}`, `${botavatar}`)
 
@@ -60,8 +60,8 @@ module.exports = {
             .setDescription("Don't forget to add this bot to your server or upvote it if you like it!")
             .setThumbnail(botavatar)
             .addFields(
-                { name: "Invite INFBOT to your server:", value: "[Discord Invite](https://discord.com/api/oauth2/authorize?client_id=732316684496404521&permissions=17047574&scope=bot)"},
-                { name: "Head over to our top.gg page:", value: "[Top.gg](https://top.gg/bot/732316684496404521)"})
+                { name: "Invite INFBOT to your server:", value: "[Invite INFBOT to your server](https://discord.com/api/oauth2/authorize?client_id=732316684496404521&permissions=17047574&scope=bot)"},
+                { name: "Head over to our top.gg page:", value: "[Vote on Top.gg](https://top.gg/bot/732316684496404521)"})
             .setTimestamp()
             .setFooter(`INFBOT by ${creators} • ${version}`, `${botavatar}`)
 
