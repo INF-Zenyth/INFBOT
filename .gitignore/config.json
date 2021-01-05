@@ -10,6 +10,6 @@
     "deleteDelay": "200",
     "consoleExecutedCommands": "Yes",
     "reactionRolesChannel": "649915868939288586",
-    "patchdate" : "05/01/21 - 18:00",
-    "patchnotes" : "Revamped the automatic channel system. Now using arrays.\nThis will hopefully reduce the chance of the wrong channel being deleted when a user quits one."
+    "patchdate" : "05/01/21 - 19:00",
+    "patchnotes" : "Revamped the automatic channel system. Now using arrays.\nThis will hopefully reduce the chance of the wrong channel being deleted when a user quits one.\nPlease notify Zenyth#4037 if you find any problems."
 }
