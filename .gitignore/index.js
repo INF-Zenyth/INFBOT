@@ -124,26 +124,26 @@ function botcommand(message) {
 var temporary = []
 
 client.on('voiceStateUpdate', async (oldState, newState) =>{
-    const mainCategory = newState.guild.channels.cache.find(channel => channel.name === autoChannelCategory && channel.type == "category").id;
-    const mainChannel = newState.guild.channels.cache.find(channel => channel.name === autoChannelName).id;
-    if(newState.channelID == mainChannel){
-        console.log(`INFBOT: Creating a new voice channel for ${newState.member.user.username}...`);
-        await newState.guild.channels.create(`${newState.member.user.username} [General]`, {type: 'voice', parent: mainCategory})
-            .then(async channel => {
-                temporary.push({ newID: channel.id, guild: newState.guild.id })
-                await newState.member.voice.setChannel(channel.id)
-            })
-            console.log("INFBOT: Channel created!");
-    }
-    if(temporary.length >= 0) for (let i = 0; i < temporary.length; i++) {
-        let ch = client.guilds.cache.find(x => x.id === temporary[i].guild).channels.cache.find(x => x.id === temporary[i].newID)
-        if(ch.members.size <= 0){
-            console.log("INFBOT: Deleting a channel...");
-            await ch.delete()
-            console.log("INFBOT: Channel deleted!");
-            return temporary.splice(i, 1)
+
+    try {
+        const mainCategory = newState.guild.channels.cache.find(channel => channel.name === autoChannelCategory && channel.type == "category").id;
+        const mainChannel = newState.guild.channels.cache.find(channel => channel.name === autoChannelName).id;
+        if(newState.channelID == mainChannel){
+            await newState.guild.channels.create(`${newState.member.user.username} [General]`, {type: 'voice', parent: mainCategory})
+                .then(async channel => {
+                    temporary.push({ newID: channel.id, guild: newState.guild.id })
+                    await newState.member.voice.setChannel(channel.id)
+                })
+        }
+        if(temporary.length >= 0) for (let i = 0; i < temporary.length; i++) {
+            let ch = client.guilds.cache.find(x => x.id === temporary[i].guild).channels.cache.find(x => x.id === temporary[i].newID)
+            if(ch.members.size <= 0){
+                await ch.delete()
+                return temporary.splice(i, 1)
+            }
         }
     }
+    catch(err) {}
 })
 
 client.on("messageReactionAdd", async (reaction, user) => {         // Only the Infernal Discord Server currently supports Reaction Roles
