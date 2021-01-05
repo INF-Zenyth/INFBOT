@@ -129,16 +129,20 @@ client.on('voiceStateUpdate', async (oldState, newState) =>{
         const mainCategory = newState.guild.channels.cache.find(channel => channel.name === autoChannelCategory && channel.type == "category").id;
         const mainChannel = newState.guild.channels.cache.find(channel => channel.name === autoChannelName).id;
         if(newState.channelID == mainChannel){
+            console.log(`INFBOT: Creating a voice channel for ${newState.member.user.username}...`);
             await newState.guild.channels.create(`${newState.member.user.username} [General]`, {type: 'voice', parent: mainCategory})
                 .then(async channel => {
                     temporary.push({ newID: channel.id, guild: newState.guild.id })
                     await newState.member.voice.setChannel(channel.id)
+                    console.log("INFBOT: Voice channel created!");
                 })
         }
         if(temporary.length >= 0) for (let i = 0; i < temporary.length; i++) {
             let ch = client.guilds.cache.find(x => x.id === temporary[i].guild).channels.cache.find(x => x.id === temporary[i].newID)
             if(ch.members.size <= 0){
+                console.log("INFBOT: Deleting voice channels...");
                 await ch.delete()
+                console.log("INFBOT: Voice channel deleted!");
                 return temporary.splice(i, 1)
             }
         }
