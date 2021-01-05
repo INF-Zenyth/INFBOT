@@ -126,7 +126,6 @@ var temporary = []
 client.on('voiceStateUpdate', async (oldState, newState) =>{
     const mainCategory = newState.guild.channels.cache.find(channel => channel.name === autoChannelCategory && channel.type == "category").id;
     const mainChannel = newState.guild.channels.cache.find(channel => channel.name === autoChannelName).id;
-    console.log(`${newState.voiceChannelID}, ${newState.member}, ${newState.member.user.username}`)
     if(newState.channelID == mainChannel){
         await newState.guild.channels.create(`${newState.member.user.username} [General]`, {type: 'voice', parent: mainCategory})
             .then(async channel => {
