@@ -121,76 +121,27 @@ function botcommand(message) {
     if(consoleExecutedCommands == "Yes") {console.log("INFBOT: A user executed the bot command.")}
 };
 
-client.on('voiceStateUpdate', async (oldState, newState) => {
+var temporary = []
 
-    let guild = newState.guild;
-    let parentChannel = newState.guild.channels.cache.find(channel => channel.name === autoChannelCategory && channel.type == "category");
-    let oldVCID = oldState.channelID;
-    let joinedUsername = newState.member.user.username;
-    //let newUserPresence = newState.member.user.presence.activities[0];
-
-    try {
-
-        global.autoChannelID = guild.channels.cache.find(channel => channel.name === autoChannelName).id;
-        global.newVCID = newState.channelID;
-        global.joinedUser = newState.member;
-
-        setTimeout(function(){
-
-            if(!newVCID && oldVCID) {
-
-                let oldSize = oldState.channel.members.size;
-                if(oldSize == 0 && oldState.guild.channels.cache.find(channel => channel.name.includes(`${oldState.member.user.username}`))) {
-
-                    let fetchedC = oldState.guild.channels.cache.find(channel => channel.name.includes(`${oldState.member.user.username}`));
-                    fetchedC.delete();
-                    console.log(`INFBOT: A channel was deleted. Guild ID: ${oldState.guild.id}`);
-
-                }
-                else if(oldSize >= 1 && oldState.guild.channels.cache.find(channel => channel.name.includes(`${oldState.member.user.username}`))) {
-
-                    let fetchedUser = oldState.channel.members.first().user.username;
-                    //let oldUserPresence = oldState.channel.members.first().user.presence.activities[0];
-                    let fetchedC = oldState.guild.channels.cache.find(channel => channel.name.includes(`${oldState.member.user.username}`));
-                    fetchedC.setName(`${fetchedUser} [General]`);      // [${oldUserPresence ? oldUserPresence.name : "General"}]
-                    console.log(`INFBOT: A channel was given to another user. Guild ID: ${oldState.guild.id}`);
-
-                }
-            }
-            else if(newVCID) {
-                if(newVCID === autoChannelID) {
-                    if(newState.guild.channels.cache.find(channel => channel.name.includes(`${joinedUsername}`))) {
-                        oldChannel = newState.guild.channels.cache.find(channel => channel.name.includes(`${joinedUsername}`));
-                        joinedUser.voice.setChannel(oldChannel);
-                        console.log(`INFBOT: A user tried to create a new channel, but one with the same name already exists. Guild ID: ${newState.guild.id}`);
-                    }
-                    else{
-                        newState.guild.channels.create(`${joinedUsername} [General]`, {type: "voice", parent: parentChannel, position: 5});    //  [${newUserPresence ? newUserPresence.name : "General"}]
-                        console.log(`INFBOT: A channel was created. Guild ID: ${newState.guild.id}`);
-                    }
-                }
-            }
-            else if(oldVCID && newVCID) {
-
-                if(oldVCID == newVCID) {return}
-
-            }
-        }, 50);
+client.on('voiceStateUpdate', async (oldState, newState) =>{
+    const mainCategory = newState.guild.channels.cache.find(channel => channel.name === autoChannelCategory && channel.type == "category").id;
+    const mainChannel = newState.guild.channels.cache.find(channel => channel.name === autoChannelName).id;
+    console.log(`${newState.voiceChannelID}, ${newState.member}, ${newState.member.user.username}`)
+    if(newState.channelID == mainChannel){
+        await newState.guild.channels.create(`${newState.member.user.username} [General]`, {type: 'voice', parent: mainCategory})
+            .then(async channel => {
+                temporary.push({ newID: channel.id, guild: newState.guild.id })
+                await newState.member.voice.setChannel(channel.id)
+            })
     }
-    catch(err) {}
-});
-
-client.on("channelCreate", (channel) => {
-
-    global.createdChannel = channel.id;
-
-    if(typeof newVCID === "undefined" || newVCID === null) {}
-    else if(newVCID === autoChannelID) {
-
-        joinedUser.voice.setChannel(createdChannel);
-
+    if(temporary.length >= 0) for (let i = 0; i < temporary.length; i++) {
+        let ch = client.guilds.cache.find(x => x.id === temporary[i].guild).channels.cache.find(x => x.id === temporary[i].newID)
+        if(ch.members.size <= 0){
+            await ch.delete()
+            return temporary.splice(i, 1)
+        }
     }
-});
+})
 
 client.on("messageReactionAdd", async (reaction, user) => {         // Only the Infernal Discord Server currently supports Reaction Roles
 
