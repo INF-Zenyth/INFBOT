@@ -4,12 +4,12 @@
     "autoChannelName": "➕ New Channel",
     "autoChannelIndicator": "➕",
     "autoChannelCategory": "Voice Channels",
-    "version": "V1.8.3",
+    "version": "V1.9.0",
     "creators": "Zenyth#4037 and Atineon#2652",
     "botavatar": "https://i.imgur.com/OjNo39d.png",
     "deleteDelay": "200",
     "consoleExecutedCommands": "Yes",
     "reactionRolesChannel": "649915868939288586",
-    "patchdate" : "25/11/2020 - 22:00",
-    "patchnotes" : "Updated the inf/help.\nINFBOT now sends the commands in your DMs."
+    "patchdate" : "05/01/21 - 18:00",
+    "patchnotes" : "Revamped the automatic channel system. Now using arrays.\nThis will hopefully reduce the chance of the wrong channel being deleted when a user quits one."
 }
