@@ -12,14 +12,18 @@ module.exports = {
             .setDescription("List of available commands")
             .setThumbnail(botavatar)
             .addFields(
-                { name: `${prefix}help`, value: "```ini\n[Shows the help menu.]```"},
+                {name: `${prefix}help`, value: "```ini\n[Shows the help menu.]```"},
                 
-                { name: `${prefix}user`, value: "```ini\n[Gives you information about you such as your ID, when you joined Discord and this server.]```", inline: true},
-                { name: `${prefix}server`, value: "```ini\n[Gives you information about the server you are on such as when it was created and more.]```", inline: true},
-                { name: `${prefix}avatar`, value: "```ini\n[No argument: gives you your avatar.\nWith an argument: gives you the avatar of tagged user.]```", inline: true},
+                {name: `${prefix}user`, value: "```ini\n[Gives you information about you such as your ID, when you joined Discord and this server.]```", inline: true},
+                {name: `${prefix}server`, value: "```ini\n[Gives you information about the server you are on such as when it was created and more.]```", inline: true},
+                {name: `${prefix}avatar`, value: "```ini\n[No argument: gives you your avatar.\nWith an argument: gives you the avatar of tagged user.]```", inline: true},
 
-                { name: `${prefix}bot`, value: "```ini\n[Gives you information about the bot such as updates, user count and more.]```", inline: true},
-                { name: `${prefix}suggest`, value: "```ini\n[Let's you suggest something. Will only work if there is a suggestions channel.]```", inline: true})
+                {name: `${prefix}bot`, value: "```ini\n[Gives you information about the bot such as updates, user count and more.]```", inline: true},
+                {name: `${prefix}suggest`, value: "```ini\n[Let's you suggest something. Will only work if there is a suggestions channel.]```", inline: true},
+                {name: `${prefix}permcheck`, value: "```ini\n[Tells you if you have administrator privileges.\n\n\n]```", inline: true},
+                
+                {name: `${prefix}random`, value: "```ini\n[Gives you a random number between the numbers you specified.]```", inline: true},
+                {name: `${prefix}rteams`, value: "```ini\n[Allows you to create random teams with the names you specified.\n]```", inline: true})
             .setTimestamp()
             .setFooter(`INFBOT by ${creators} • ${version}`, `${botavatar}`);
 
