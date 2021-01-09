@@ -4,12 +4,12 @@
     "autoChannelName": "➕ New Channel",
     "autoChannelIndicator": "➕",
     "autoChannelCategory": "Voice Channels",
-    "version": "V1.9.0",
+    "version": "V1.10.0",
     "creators": "Zenyth#4037 and Atineon#2652",
     "botavatar": "https://i.imgur.com/OjNo39d.png",
     "deleteDelay": "200",
     "consoleExecutedCommands": "Yes",
     "reactionRolesChannel": "649915868939288586",
-    "patchdate" : "05/01/21 - 19:00",
-    "patchnotes" : "Revamped the automatic channel system. Now using arrays.\nThis will hopefully reduce the chance of the wrong channel being deleted when a user quits one.\nPlease notify Zenyth#4037 if you find any problems."
+    "patchdate" : "09/01/21 - 17:00",
+    "patchnotes" : "Added two new commands: inf/rteams and inf/random. These will help you when you want a random number or want to create random teams.\nNote from previous patch: INFBOT Voice Channels (IBVCs) are a bit slower than I like to hlep improve stability. Hopefully I'll find a way to make them faster."
 }
