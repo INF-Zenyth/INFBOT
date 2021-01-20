@@ -16,7 +16,7 @@ client.on("ready", () => {
     const status = [
         `${client.guilds.cache.size} servers | ${prefix}help`,
         `${client.channels.cache.size} channels | ${prefix}help`,
-        `${client.members.cache.size} users | ${prefix}help`,
+        `${client.guilds.cache.reduce((a, g) => a + g.memberCount, 0)} users | ${prefix}help`,
     ];
     var x = 0;
 
