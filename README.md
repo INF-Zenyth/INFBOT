@@ -1,4 +1,4 @@
 # INFBOT
 INFBOT Discord Bot (discord.js)
 
-This page will no longer be updated as often as it did before, as I've found a new host where the bot doesn't automagically update from Github.
+This page will no longer be update as of 12/03/2021. This may change in the future, but don't count on it.
